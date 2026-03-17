@@ -149,6 +149,7 @@ const processSteps = [
 @media (max-width: 768px) {
   .home-header {
     padding: 0 12px;
+    overflow: hidden;
   }
   .header-inner {
     height: auto;
@@ -158,9 +159,14 @@ const processSteps = [
     gap: 10px;
     justify-content: flex-start;
     padding: 12px 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   .header-inner > * {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 }
 .logo { display: flex; align-items: center; gap: 14px; }
@@ -190,6 +196,9 @@ const processSteps = [
     flex-wrap: wrap;
     width: 100%;
     display: flex;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
   .badge {
     padding: 6px 10px;
@@ -197,11 +206,14 @@ const processSteps = [
     font-weight: 500;
     line-height: 1.2;
     white-space: nowrap;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     min-height: 28px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -217,9 +229,21 @@ const processSteps = [
     flex-direction: column;
     gap: 28px;
     align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 .hero-content { flex: 1; }
+@media (max-width: 768px) {
+  .hero-content {
+    flex: 1 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
 .hero-tag { display: inline-block; padding: 4px 14px; background: var(--primary); color: #fff; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 16px; letter-spacing: 1px; }
 
 @media (max-width: 768px) {
@@ -241,6 +265,12 @@ const processSteps = [
     line-height: 1.4;
     margin-bottom: 14px;
     letter-spacing: -0.3px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 }
 .highlight { color: var(--primary); }
@@ -252,26 +282,40 @@ const processSteps = [
     line-height: 1.7;
     margin-bottom: 24px;
     max-width: 100%;
+    width: 100%;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 }
 .hero-stats { display: flex; align-items: center; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow-sm); }
 .hero-stat { flex: 1; padding: 20px 24px; text-align: center; }
 @media (max-width: 768px) {
   .hero-stats {
+    display: flex;
     flex-wrap: wrap;
-    padding: 14px;
+    padding: 12px;
     gap: 10px;
     background: var(--bg-card);
     border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
   }
   .hero-stat {
-    flex: 1 1 calc(50% - 5px);
-    padding: 12px;
+    flex: 0 0 calc(50% - 5px);
+    padding: 10px;
     text-align: center;
-    min-width: 130px;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .hero-stat-divider {
-    display: none;
+    display: none !important;
   }
 }
 .hero-stat-value { font-size: 28px; font-weight: 700; color: var(--primary); font-family: 'JetBrains Mono', monospace; }
@@ -281,14 +325,20 @@ const processSteps = [
 
 @media (max-width: 768px) {
   .hero-stat-value {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .hero-stat-value span {
-    font-size: 12px;
+    font-size: 11px;
   }
   .hero-stat-label {
-    font-size: 11px;
-    margin-top: 3px;
+    font-size: 10px;
+    margin-top: 2px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
   }
 }
 
@@ -304,6 +354,8 @@ const processSteps = [
   .hero-flow {
     width: 100%;
     flex-shrink: 1;
+    max-width: 100%;
+    overflow: hidden;
   }
   .flow-title {
     font-size: 11px;
@@ -315,9 +367,11 @@ const processSteps = [
     gap: 6px;
     overflow-x: auto;
     width: 100%;
+    max-width: 100%;
     padding: 0;
     justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
   }
   .flow-node {
     gap: 2px;
@@ -349,6 +403,9 @@ const processSteps = [
 @media (max-width: 768px) {
   .portals {
     padding: 28px 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   .portals-title {
     margin-bottom: 20px;
@@ -356,14 +413,20 @@ const processSteps = [
   .portals-title h2 {
     font-size: 18px;
     margin-bottom: 6px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .portals-title p {
     font-size: 12px;
     line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .portals-grid {
     grid-template-columns: 1fr;
     gap: 10px;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -385,8 +448,8 @@ const processSteps = [
 .pg:hover { border-color: #8b5cf6; }
 .portal-icon { font-size: 36px; margin-bottom: 4px; }
 .portal-role { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
-.portal-name { font-size: 15px; font-weight: 700; color: var(--text-primary); }
-.portal-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+.portal-name { font-size: 15px; font-weight: 700; color: var(--text-primary); word-break: break-word; overflow-wrap: break-word; }
+.portal-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; flex: 1; word-break: break-word; overflow-wrap: break-word; }
 .portal-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
 .portal-tag { font-size: 11px; padding: 3px 8px; background: var(--bg-secondary); border-radius: 10px; color: var(--text-muted); font-weight: 500; }
 .portal-enter { font-size: 13px; color: var(--primary); font-weight: 700; }
@@ -408,11 +471,15 @@ const processSteps = [
   .portal-name {
     font-size: 13px;
     line-height: 1.3;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .portal-desc {
     font-size: 11px;
     line-height: 1.5;
     margin: 2px 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .portal-footer {
     margin-top: 6px;
@@ -430,16 +497,16 @@ const processSteps = [
   }
 }
 
-.process { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg) 100%); padding: 56px 0; }
-.process-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
-.process-title { text-align: center; margin-bottom: 40px; }
-.process-title h2 { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+.process { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg) 100%); padding: 56px 0; width: 100%; max-width: 100%; overflow: hidden; }
+.process-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; width: 100%; overflow: hidden; }
+.process-title { text-align: center; margin-bottom: 40px; word-break: break-word; overflow-wrap: break-word; }
+.process-title h2 { font-size: 28px; font-weight: 700; color: var(--text-primary); word-break: break-word; overflow-wrap: break-word; }
 .process-timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative; align-items: start; }
 .process-step { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 8px; position: relative; text-align: center; }
 .process-num { font-size: 11px; font-weight: 700; color: var(--primary); font-family: 'JetBrains Mono', monospace; background: #d1fae5; padding: 2px 8px; border-radius: 10px; }
 .process-icon { font-size: 32px; }
-.process-step-title { font-size: 14px; font-weight: 700; color: var(--text-primary); }
-.process-step-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+.process-step-title { font-size: 14px; font-weight: 700; color: var(--text-primary); word-break: break-word; overflow-wrap: break-word; }
+.process-step-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; word-break: break-word; overflow-wrap: break-word; }
 .process-arrow { position: absolute; right: -16px; top: 36px; font-size: 20px; color: var(--border); font-weight: 700; }
 
 @media (max-width: 768px) {
@@ -466,6 +533,9 @@ const processSteps = [
     background: var(--bg-card);
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   .process-num {
     font-size: 9px;
@@ -476,10 +546,14 @@ const processSteps = [
   }
   .process-step-title {
     font-size: 12px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .process-step-desc {
     font-size: 10px;
     line-height: 1.4;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .process-arrow {
     display: none;
