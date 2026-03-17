@@ -159,3 +159,11 @@ a { color: inherit; text-decoration: none; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+@media (max-width: 768px) {
+  .page-header { padding: 0 16px; height: 52px; }
+  .page-header-logo { font-size: 14px; }
+  .page-header-logo span:first-child { font-size: 20px; }
+  .stat-value { font-size: 22px; }
+  .section-title { font-size: 15px; }
+}
+
