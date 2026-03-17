@@ -152,13 +152,49 @@ function handlePublish() {
 .ent-left { display: flex; flex-direction: column; gap: 24px; }
 .ent-right { display: flex; flex-direction: column; gap: 24px; }
 
+@media (max-width: 768px) {
+  .ent-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px 12px;
+  }
+}
+
 .credit-overview { display: flex; align-items: center; gap: 24px; }
 .credit-ring { flex-shrink: 0; }
 .credit-stats { flex: 1; display: flex; flex-direction: column; gap: 12px; }
 
+@media (max-width: 768px) {
+  .credit-overview {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .credit-ring svg {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .credit-stats {
+    width: 100%;
+  }
+}
+
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
 
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
 .success-msg { margin-top: 12px; padding: 12px 16px; background: #d1fae5; border-radius: var(--radius-sm); color: #065f46; font-size: 14px; font-weight: 500; }
+
+@media (max-width: 768px) {
+  .success-msg {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+}
 
 .slot-list { display: flex; flex-direction: column; gap: 16px; }
 .slot-item { border: 1.5px solid var(--border); border-radius: var(--radius-md); padding: 16px 20px; transition: box-shadow var(--transition); }
@@ -169,4 +205,27 @@ function handlePublish() {
 .slot-divider { color: var(--border); }
 .slot-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
 .slot-date { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
+
+@media (max-width: 768px) {
+  .slot-item {
+    padding: 12px 14px;
+  }
+  .slot-header {
+    margin-bottom: 8px;
+  }
+  .slot-company {
+    font-size: 13px;
+  }
+  .slot-amount-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .slot-meta {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    font-size: 11px;
+    margin-top: 6px;
+  }
+}
 </style>

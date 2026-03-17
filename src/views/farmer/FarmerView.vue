@@ -190,7 +190,25 @@ function delay(ms: number) { return new Promise(resolve => setTimeout(resolve, m
 <style scoped>
 .farmer-page { min-height: 100vh; background: linear-gradient(135deg, #f0faf5 0%, #fffbeb 100%); display: flex; align-items: center; justify-content: center; padding: 40px; }
 .farmer-wrapper { display: flex; align-items: flex-start; gap: 64px; max-width: 1000px; width: 100%; }
+
+@media (max-width: 768px) {
+  .farmer-page {
+    padding: 16px;
+    align-items: stretch;
+  }
+  .farmer-wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+}
 .farmer-intro { flex: 1; padding-top: 40px; }
+
+@media (max-width: 768px) {
+  .farmer-intro {
+    padding-top: 0;
+    display: none;
+  }
+}
 .intro-badge { display: inline-block; padding: 4px 14px; background: var(--primary); color: #fff; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 16px; }
 .intro-title { font-size: 36px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px; }
 .intro-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 32px; }
@@ -201,6 +219,16 @@ function delay(ms: number) { return new Promise(resolve => setTimeout(resolve, m
 .intro-feature-desc { font-size: 13px; color: var(--text-muted); }
 .intro-back { font-size: 13px; color: var(--primary); cursor: pointer; font-weight: 600; }
 .mobile-shell { width: 360px; flex-shrink: 0; background: #1a1a2e; border-radius: 40px; padding: 16px 8px 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+
+@media (max-width: 768px) {
+  .mobile-shell {
+    width: 100%;
+    border-radius: 12px;
+    padding: 0;
+    background: #fff;
+    box-shadow: none;
+  }
+}
 .mobile-notch { width: 100px; height: 24px; background: #1a1a2e; border-radius: 0 0 16px 16px; margin: 0 auto 4px; }
 .mobile-statusbar { display: flex; justify-content: space-between; padding: 0 20px 8px; color: #fff; font-size: 12px; }
 .mobile-header { background: var(--primary-dark); color: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -208,6 +236,31 @@ function delay(ms: number) { return new Promise(resolve => setTimeout(resolve, m
 .mobile-title { font-size: 15px; font-weight: 700; }
 .mobile-help { font-size: 13px; color: rgba(255,255,255,0.7); }
 .mobile-body { background: #fff; min-height: 500px; border-radius: 0 0 28px 28px; overflow-y: auto; }
+
+@media (max-width: 768px) {
+  .mobile-notch,
+  .mobile-statusbar {
+    display: none;
+  }
+  .mobile-header {
+    padding: 10px 14px;
+    min-height: 40px;
+  }
+  .mobile-back {
+    font-size: 16px;
+  }
+  .mobile-title {
+    font-size: 14px;
+  }
+  .mobile-help {
+    font-size: 12px;
+  }
+  .mobile-body {
+    min-height: auto;
+    border-radius: 0 0 12px 12px;
+    overflow-y: visible;
+  }
+}
 .mobile-screen { padding: 20px; }
 .welcome-emoji { font-size: 52px; text-align: center; padding-top: 16px; }
 .welcome-title { font-size: 20px; font-weight: 700; text-align: center; color: var(--text-primary); margin: 8px 0 4px; }

@@ -156,21 +156,113 @@ function typeClass(type: string) {
 .gov-title { font-size: 18px; font-weight: 700; color: #e6edf3; }
 .gov-sub { font-size: 11px; color: #8b949e; }
 .gov-header-center { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #8b949e; }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #3fb950; animation: pulse 1.5s ease-in-out infinite; }
 .gov-time { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #58a6ff; }
+
+@media (max-width: 768px) {
+  .gov-header {
+    padding: 0 12px;
+    height: 52px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .gov-header-left {
+    flex: 1 1 100%;
+    gap: 8px;
+  }
+  .gov-logo {
+    font-size: 20px;
+  }
+  .gov-title {
+    font-size: 14px;
+  }
+  .gov-sub {
+    font-size: 10px;
+  }
+  .gov-header-center {
+    flex: 1 1 auto;
+    gap: 6px;
+    font-size: 11px;
+  }
+  .gov-time {
+    font-size: 11px;
+  }
+}
 .gov-body { flex: 1; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
 .gov-top { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
 .gov-stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; text-align: center; }
 .gsc-icon { font-size: 24px; margin-bottom: 8px; }
 .gsc-value { font-size: 22px; font-weight: 700; color: #58a6ff; font-family: 'JetBrains Mono', monospace; }
 .gsc-label { font-size: 11px; color: #8b949e; margin-top: 4px; }
+
+@media (max-width: 768px) {
+  .gov-body {
+    padding: 12px 12px;
+    gap: 12px;
+  }
+  .gov-top {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .gov-stat-card {
+    padding: 10px;
+  }
+  .gsc-icon {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .gsc-value {
+    font-size: 16px;
+  }
+  .gsc-label {
+    font-size: 10px;
+    margin-top: 2px;
+  }
+}
 .gov-mid { display: grid; grid-template-columns: 1fr 340px; gap: 16px; }
 .gov-bottom { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+
+@media (max-width: 768px) {
+  .gov-mid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .gov-bottom {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
 .gov-panel { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; }
 .panel-title { font-size: 14px; font-weight: 700; color: #e6edf3; margin-bottom: 14px; }
+
+@media (max-width: 768px) {
+  .gov-panel {
+    padding: 12px;
+  }
+  .panel-title {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
 .chain-list { display: flex; flex-direction: column; gap: 8px; }
 .chain-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; background: #0d1117; border-radius: 8px; border: 1px solid #21262d; }
 .ci-left { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; flex-shrink: 0; width: 90px; }
+
+@media (max-width: 768px) {
+  .chain-list {
+    gap: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .chain-item {
+    gap: 8px;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  .ci-left {
+    width: 70px;
+  }
+}
 .ci-type { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
 .ct-green { background: #0d4a1e; color: #3fb950; }
 .ct-blue { background: #0c2d6b; color: #58a6ff; }
@@ -198,6 +290,20 @@ function typeClass(type: string) {
 .ri-meta { display: flex; justify-content: space-between; font-size: 11px; color: #8b949e; }
 .flow-chain { display: flex; align-items: center; padding: 16px 0; overflow-x: auto; }
 .flow-node { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; }
+
+@media (max-width: 768px) {
+  .flow-chain {
+    gap: 4px;
+    overflow-x: auto;
+    padding: 8px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .flow-node {
+    gap: 4px;
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+}
 .fn-icon { font-size: 32px; }
 .fn-name { font-size: 13px; font-weight: 700; color: #e6edf3; white-space: nowrap; }
 .fn-amount { font-size: 12px; color: #58a6ff; font-family: 'JetBrains Mono', monospace; }
@@ -206,6 +312,16 @@ function typeClass(type: string) {
 .fn-arrow-label { font-size: 11px; color: #8b949e; white-space: nowrap; }
 .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .summary-item { background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 12px; }
+
+@media (max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .summary-item {
+    padding: 10px;
+  }
+}
 .si-value { font-size: 20px; font-weight: 700; color: #58a6ff; font-family: 'JetBrains Mono', monospace; }
 .si-label { font-size: 11px; color: #8b949e; margin: 2px 0; }
 .si-trend.up { font-size: 11px; color: #3fb950; }

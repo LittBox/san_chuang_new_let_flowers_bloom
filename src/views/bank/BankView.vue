@@ -105,6 +105,17 @@ async function handleApprove(app: LoanApplication) {
 <style scoped>
 .bank-inner { padding: 24px 32px; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
 .bank-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+@media (max-width: 768px) {
+  .bank-inner {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+  .bank-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
 .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; gap: 12px; color: var(--text-muted); }
 .score-cell { display: flex; flex-direction: column; gap: 4px; }
 .score-n { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
@@ -112,4 +123,26 @@ async function handleApprove(app: LoanApplication) {
 .mini-fill { height: 100%; border-radius: 2px; }
 .cell-sub { font-size: 11px; color: var(--text-muted); }
 .hash { font-size: 11px; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 30px 16px;
+  }
+  .score-cell {
+    gap: 2px;
+  }
+  .score-n {
+    font-size: 14px;
+  }
+  .mini-bar {
+    width: 50px;
+  }
+  .cell-sub {
+    font-size: 10px;
+  }
+  .hash {
+    font-size: 10px;
+    word-break: break-all;
+  }
+}
 </style>
