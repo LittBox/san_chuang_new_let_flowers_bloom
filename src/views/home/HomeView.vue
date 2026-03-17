@@ -151,11 +151,13 @@ const processSteps = [
     padding: 0 12px;
   }
   .header-inner {
-    height: 56px;
+    height: auto;
+    min-height: 56px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
-    justify-content: center;
+    gap: 10px;
+    justify-content: flex-start;
+    padding: 12px 0;
   }
   .header-inner > * {
     width: 100%;
@@ -173,24 +175,33 @@ const processSteps = [
     gap: 10px;
   }
   .logo-icon {
-    font-size: 24px;
+    font-size: 28px;
+    flex-shrink: 0;
   }
   .logo-title {
     font-size: 16px;
   }
   .logo-sub {
-    font-size: 10px;
+    font-size: 11px;
+    line-height: 1.3;
   }
   .header-badges {
-    gap: 6px;
+    gap: 6px 8px;
     flex-wrap: wrap;
     width: 100%;
+    display: flex;
   }
   .badge {
-    padding: 3px 8px;
-    font-size: 10px;
-    flex: 1 1 auto;
-    min-width: calc(50% - 3px);
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex: 0 1 auto;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -202,36 +213,62 @@ const processSteps = [
 }
 @media (max-width: 768px) {
   .hero {
-    padding: 32px 16px;
+    padding: 28px 16px;
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
     align-items: stretch;
   }
 }
 .hero-content { flex: 1; }
 .hero-tag { display: inline-block; padding: 4px 14px; background: var(--primary); color: #fff; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 16px; letter-spacing: 1px; }
+
+@media (max-width: 768px) {
+  .hero-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
 .hero-title { font-size: 40px; font-weight: 700; color: var(--text-primary); line-height: 1.2; margin-bottom: 16px; }
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 28px;
-    line-height: 1.3;
-    margin-bottom: 12px;
+    font-size: 26px;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
   }
 }
 .highlight { color: var(--primary); }
 .hero-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; max-width: 480px; }
+
+@media (max-width: 768px) {
+  .hero-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+}
 .hero-stats { display: flex; align-items: center; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow-sm); }
 .hero-stat { flex: 1; padding: 20px 24px; text-align: center; }
 @media (max-width: 768px) {
   .hero-stats {
     flex-wrap: wrap;
-    padding: 12px;
-    gap: 12px;
+    padding: 14px;
+    gap: 10px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
   }
   .hero-stat {
-    flex: 1 1 calc(50% - 6px);
+    flex: 1 1 calc(50% - 5px);
     padding: 12px;
-    min-width: 120px;
+    text-align: center;
+    min-width: 130px;
   }
   .hero-stat-divider {
     display: none;
@@ -241,9 +278,17 @@ const processSteps = [
 .hero-stat-value span { font-size: 14px; color: var(--text-muted); font-family: inherit; font-weight: 400; }
 .hero-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .hero-stat-divider { width: 1px; height: 48px; background: var(--border); flex-shrink: 0; }
+
 @media (max-width: 768px) {
   .hero-stat-value {
-    font-size: 20px;
+    font-size: 18px;
+  }
+  .hero-stat-value span {
+    font-size: 12px;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    margin-top: 3px;
   }
 }
 
@@ -260,28 +305,35 @@ const processSteps = [
     width: 100%;
     flex-shrink: 1;
   }
+  .flow-title {
+    font-size: 11px;
+    margin-bottom: 12px;
+    letter-spacing: 0;
+  }
   .flow-chain {
     flex-direction: row;
-    gap: 8px;
+    gap: 6px;
     overflow-x: auto;
     width: 100%;
-    padding: 0 4px;
+    padding: 0;
     justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
   }
   .flow-node {
     gap: 2px;
     flex-shrink: 0;
   }
   .flow-node-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
   }
   .flow-node-name {
-    font-size: 10px;
+    font-size: 9px;
     text-align: center;
-    max-width: 36px;
+    max-width: 34px;
     word-break: break-word;
+    line-height: 1.2;
   }
   .flow-arrow {
     display: none;
@@ -296,21 +348,22 @@ const processSteps = [
 
 @media (max-width: 768px) {
   .portals {
-    padding: 32px 16px;
+    padding: 28px 16px;
   }
   .portals-title {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .portals-title h2 {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 6px;
   }
   .portals-title p {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.5;
   }
   .portals-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 }
 
@@ -340,33 +393,40 @@ const processSteps = [
 
 @media (max-width: 768px) {
   .portal-card {
-    padding: 20px 16px 16px;
+    padding: 18px 14px 14px;
     gap: 6px;
+    border-radius: var(--radius-md);
   }
   .portal-icon {
-    font-size: 32px;
+    font-size: 30px;
     margin-bottom: 2px;
   }
   .portal-role {
-    font-size: 9px;
+    font-size: 8px;
+    letter-spacing: 1px;
   }
   .portal-name {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.3;
   }
   .portal-desc {
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.5;
+    margin: 2px 0;
   }
   .portal-footer {
-    margin-top: 8px;
-    gap: 8px;
+    margin-top: 6px;
+    gap: 6px;
+    justify-content: space-between;
   }
   .portal-tag {
-    font-size: 10px;
-    padding: 2px 6px;
+    font-size: 9px;
+    padding: 2px 5px;
+    flex-shrink: 0;
   }
   .portal-enter {
-    font-size: 12px;
+    font-size: 11px;
+    flex-shrink: 0;
   }
 }
 
@@ -384,20 +444,20 @@ const processSteps = [
 
 @media (max-width: 768px) {
   .process {
-    padding: 32px 0;
+    padding: 28px 0;
   }
   .process-inner {
     padding: 0 16px;
   }
   .process-title {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .process-title h2 {
-    font-size: 20px;
+    font-size: 18px;
   }
   .process-timeline {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
     position: static;
   }
   .process-step {
@@ -408,17 +468,18 @@ const processSteps = [
     border: 1px solid var(--border);
   }
   .process-num {
-    font-size: 10px;
+    font-size: 9px;
     padding: 2px 6px;
   }
   .process-icon {
-    font-size: 28px;
+    font-size: 26px;
   }
   .process-step-title {
-    font-size: 13px;
+    font-size: 12px;
   }
   .process-step-desc {
-    font-size: 11px;
+    font-size: 10px;
+    line-height: 1.4;
   }
   .process-arrow {
     display: none;
@@ -430,10 +491,11 @@ const processSteps = [
 @media (max-width: 768px) {
   .home-footer {
     flex-direction: column;
-    gap: 8px;
-    padding: 16px 12px;
+    gap: 6px;
+    padding: 14px 12px;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
+    line-height: 1.5;
   }
 }
 </style>
