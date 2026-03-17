@@ -121,27 +121,44 @@ async function handleApprove(app: LoanApplication) {
 .score-n { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
 .mini-bar { height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; width: 60px; }
 .mini-fill { height: 100%; border-radius: 2px; }
-.cell-sub { font-size: 11px; color: var(--text-muted); }
-.hash { font-size: 11px; color: var(--text-muted); }
+.cell-sub { font-size: 11px; color: var(--text-muted); word-break: break-word; overflow-wrap: break-word; }
+.hash { font-size: 11px; color: var(--text-muted); word-break: break-all; overflow-wrap: break-word; }
+
+/* 表格列标签（应用于称号装饰）*/
+.table tr:nth-child(1) td:nth-child(1)::before { content: '\u7533\u8bf7\u4eba'; }
+.table tr:nth-child(1) td:nth-child(2)::before { content: '\u82b1\u5349\u54c1\u79cd'; }
+.table tr:nth-child(1) td:nth-child(3)::before { content: '\u7533\u7f6e\u91d1\u989d'; }
+.table tr:nth-child(1) td:nth-child(4)::before { content: 'AI\u8bc4\u5206'; }
+.table tr:nth-child(1) td:nth-child(5)::before { content: '\u98ce\u9669\u7565\u7ea7'; }
+.table tr:nth-child(1) td:nth-child(6)::before { content: '\u62c5\u4fdd\u4f01\u4e1a'; }
+.table tr:nth-child(1) td:nth-child(7)::before { content: '\u62c5\u4fdd\u8d39'; }
+.table tr:nth-child(1) td:nth-child(8)::before { content: '\u64cd\u4f5c'; }
 
 @media (max-width: 768px) {
   .empty-state {
     padding: 30px 16px;
   }
   .score-cell {
-    gap: 2px;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
   }
   .score-n {
     font-size: 14px;
+    min-width: 30px;
   }
   .mini-bar {
     width: 50px;
+    flex-shrink: 0;
   }
   .cell-sub {
     font-size: 10px;
+    display: block;
   }
   .hash {
     font-size: 10px;
+    display: block;
+    max-width: 100%;
     word-break: break-all;
   }
 }

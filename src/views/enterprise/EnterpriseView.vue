@@ -200,11 +200,11 @@ function handlePublish() {
 .slot-item { border: 1.5px solid var(--border); border-radius: var(--radius-md); padding: 16px 20px; transition: box-shadow var(--transition); }
 .slot-item:hover { box-shadow: var(--shadow-md); border-color: var(--primary-light); }
 .slot-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.slot-company { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+.slot-company { font-size: 15px; font-weight: 700; color: var(--text-primary); word-break: break-word; overflow-wrap: break-word; flex: 1; min-width: 0; }
 .slot-amount-row { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-secondary); }
-.slot-divider { color: var(--border); }
+.slot-divider { color: var(--border); flex-shrink: 0; }
 .slot-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
-.slot-date { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
+.slot-date { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-family: 'JetBrains Mono', monospace; word-break: break-word; overflow-wrap: break-word; }
 
 @media (max-width: 768px) {
   .slot-item {
@@ -212,20 +212,45 @@ function handlePublish() {
   }
   .slot-header {
     margin-bottom: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
   .slot-company {
     font-size: 13px;
+    width: 100%;
+    max-width: 100%;
   }
   .slot-amount-row {
     flex-wrap: wrap;
     gap: 8px;
     font-size: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .slot-divider {
+    display: none;
+  }
+  .slot-amount-row span {
+    display: block;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .slot-meta {
     flex-wrap: wrap;
     gap: 10px 16px;
     font-size: 11px;
     margin-top: 6px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .slot-meta span {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .slot-date {
+    width: 100%;
+    word-break: break-all;
   }
 }
 </style>

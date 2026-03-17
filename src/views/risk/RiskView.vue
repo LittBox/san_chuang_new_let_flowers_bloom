@@ -210,21 +210,98 @@ async function runEval() {
 
 @media (max-width: 768px) {
   .lineage {
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 12px;
     overflow-x: visible;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 .lineage-sources { display: flex; flex-direction: column; gap: 6px; }
 .lsrc { background: var(--bg-secondary); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 6px; min-width: 110px; }
-.lsrc-name { font-size: 12px; font-weight: 600; flex: 1; }
-.lsrc-ok { color: var(--primary); font-weight: 700; }
+.lsrc-name { font-size: 12px; font-weight: 600; flex: 1; word-break: break-word; overflow-wrap: break-word; }
+.lsrc-ok { color: var(--primary); font-weight: 700; flex-shrink: 0; }
+
+@media (max-width: 768px) {
+  .lineage-sources {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+  .lsrc {
+    min-width: auto;
+    flex: 0 1 calc(50% - 4px);
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  .lsrc-name {
+    font-size: 11px;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
 .lineage-mid { display: flex; flex-direction: column; gap: 6px; }
 .l-arrow { font-size: 16px; color: var(--primary); font-weight: 700; line-height: 2.2; }
+
+@media (max-width: 768px) {
+  .lineage-mid {
+    display: none;
+  }
+  .l-arrow {
+    display: none;
+  }
+}
 .lineage-engine { background: var(--primary); color: #fff; border-radius: 12px; padding: 16px 18px; text-align: center; font-size: 13px; font-weight: 700; }
 .le-sub { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+@media (max-width: 768px) {
+  .lineage-engine {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  .le-sub {
+    font-size: 10px;
+  }
+}
 .lineage-result { background: var(--bg-secondary); border-radius: 12px; padding: 14px 18px; text-align: center; font-size: 13px; }
-.lr-score { font-size: 32px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.lr-score { font-size: 32px; font-weight: 700; font-family: 'JetBrains Mono', monospace; word-break: break-word; overflow-wrap: break-word; }
+
+/* 风险评分标签文本 */
+.lineage-result > div:last-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .lineage-result {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  .lr-score {
+    font-size: 24px;
+  }
+  .lineage-result > div:last-child {
+    font-size: 12px;
+    margin-top: 4px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
 .dims-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 @media (max-width: 768px) {
