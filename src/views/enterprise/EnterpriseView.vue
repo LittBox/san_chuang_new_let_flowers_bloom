@@ -77,6 +77,7 @@
           <button class="btn btn-primary btn-lg" style="width:100%;margin-top:8px" @click="handlePublish">
             🚀 确认发布挂牌
           </button>
+          <div v-if="publishError" class="error-msg">{{ publishError }}</div>
           <div v-if="publishSuccess" class="success-msg">
             ✅ 额度挂牌成功！已上链存证，等待花农申请匹配。
           </div>
@@ -130,8 +131,40 @@ import { useBlockchainStore } from '../../stores/blockchainStore'
 const creditStore = useCreditStore()
 const blockchainStore = useBlockchainStore()
 const publishSuccess = ref(false)
+const publishError = ref('')
+
+function validatePublishForm(): boolean {
+  const f = creditStore.newSlotForm
+  if (!f.totalAmount || f.totalAmount <= 0) {
+    publishError.value = '拆分额度必须大于0'
+    return false
+  }
+  if (!f.maxLoanPerFarmer || f.maxLoanPerFarmer <= 0) {
+    publishError.value = '单笔最高额度必须大于0'
+    return false
+  }
+  if (!f.minLoanPerFarmer || f.minLoanPerFarmer <= 0) {
+    publishError.value = '单笔最低额度必须大于0'
+    return false
+  }
+  if (f.minLoanPerFarmer > f.maxLoanPerFarmer) {
+    publishError.value = '单笔最低额度不能大于单笔最高额度'
+    return false
+  }
+  if (!f.interestRate || f.interestRate <= 0) {
+    publishError.value = '参考利率必须大于0'
+    return false
+  }
+  if (!f.guaranteeFeeRate || f.guaranteeFeeRate <= 0) {
+    publishError.value = '担保费率必须大于0'
+    return false
+  }
+  publishError.value = ''
+  return true
+}
 
 function handlePublish() {
+  if (!validatePublishForm()) return
   creditStore.publishNewSlot()
   blockchainStore.addRecord({
     timestamp: new Date().toLocaleString('zh-CN'),
@@ -188,11 +221,16 @@ function handlePublish() {
 }
 
 .success-msg { margin-top: 12px; padding: 12px 16px; background: #d1fae5; border-radius: var(--radius-sm); color: #065f46; font-size: 14px; font-weight: 500; }
+.error-msg { margin-top: 10px; padding: 10px 14px; background: #fee2e2; border-radius: var(--radius-sm); color: #991b1b; font-size: 13px; font-weight: 600; border-left: 3px solid #c0392b; }
 
 @media (max-width: 768px) {
   .success-msg {
     font-size: 12px;
     padding: 10px 12px;
+  }
+  .error-msg {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 }
 

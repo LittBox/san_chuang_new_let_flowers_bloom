@@ -13,9 +13,10 @@
         <span class="gov-time">{{ currentTime }}</span>
       </div>
       <div class="gov-header-right">
-        <span class="nav-link" style="color:rgba(255,255,255,0.6)" @click="$router.push('/')">← 返回首页</span>
+        <span class="nav-link gov-back-link" @click="$router.push('/')">← 返回首页</span>
       </div>
     </header>
+    <div class="gov-mobile-back" @click="$router.push('/')">← 返回首页</div>
 
     <div class="gov-body">
       <div class="gov-top">
@@ -150,6 +151,28 @@ function typeClass(type: string) {
 
 <style scoped>
 .gov-page { min-height: 100vh; background: #0d1117; color: #e6edf3; display: flex; flex-direction: column; }
+.gov-back-link { color: rgba(255,255,255,0.8) !important; font-weight: 600; }
+.gov-back-link:hover { color: #fff !important; background: rgba(255,255,255,0.1) !important; }
+
+.gov-mobile-back {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .gov-mobile-back {
+    display: block;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    cursor: pointer;
+  }
+  .gov-mobile-back:active {
+    background: #f0faf5;
+  }
+}
 .gov-header { background: #161b22; border-bottom: 1px solid #30363d; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
 .gov-header-left { display: flex; align-items: center; gap: 14px; }
 .gov-logo { font-size: 28px; }

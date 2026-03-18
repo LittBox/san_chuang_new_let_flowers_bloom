@@ -25,6 +25,7 @@
           <span class="mobile-help">帮助</span>
         </div>
         <div class="mobile-body">
+          <div class="mobile-back-home" @click="$router.push('/')">← 返回首页</div>
           <div v-if="step === 0" class="mobile-screen fade-in-up">
             <div class="welcome-emoji">🌸</div>
             <div class="welcome-title">极速花农贷</div>
@@ -49,7 +50,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">手机号码</label>
-              <input v-model="loanStore.farmerForm.farmerPhone" class="form-input" placeholder="请输入手机号" />
+              <input v-model="loanStore.farmerForm.farmerPhone" class="form-input" placeholder="请输入手机号" inputmode="numeric" />
             </div>
             <div class="form-group">
               <label class="form-label">种植区域</label>
@@ -66,7 +67,8 @@
                 <option>玫瑰</option><option>康乃馨</option><option>百合</option><option>满天星</option>
               </select>
             </div>
-            <button class="mobile-btn" @click="step = 2">下一步</button>
+            <div v-if="step1Error" class="form-error">{{ step1Error }}</div>
+            <button class="mobile-btn" @click="goStep2">下一步</button>
           </div>
           <div v-else-if="step === 2" class="mobile-screen fade-in-up">
             <div class="step-bar">
@@ -76,7 +78,7 @@
             <div class="step-title">第二步：贷款信息</div>
             <div class="form-group">
               <label class="form-label">种植面积（亩）</label>
-              <input v-model.number="loanStore.farmerForm.plantArea" type="number" class="form-input" min="0.5" />
+              <input v-model.number="loanStore.farmerForm.plantArea" type="number" class="form-input" min="0.1" step="0.1" placeholder="请输入种植面积" />
             </div>
             <div class="form-group">
               <label class="form-label">申请金额 <b style="color:var(--primary)">{{ loanStore.farmerForm.requestAmount }} 万元</b></label>
@@ -96,9 +98,10 @@
                 <span v-for="d in dataSources" :key="d" class="ai-tag">{{ d }}</span>
               </div>
             </div>
+            <div v-if="step2Error" class="form-error">{{ step2Error }}</div>
             <div class="mobile-btn-row">
               <button class="mobile-btn-ghost" @click="step = 1">上一步</button>
-              <button class="mobile-btn" @click="handleSubmit">提交申请</button>
+              <button class="mobile-btn" @click="goSubmit">提交申请</button>
             </div>
           </div>
           <div v-else-if="step === 3" class="mobile-screen fade-in-up">
@@ -151,6 +154,53 @@ const creditStore = useCreditStore()
 const blockchainStore = useBlockchainStore()
 const currentApp = ref<any>(null)
 const currentProcStep = ref(0)
+const step1Error = ref('')
+const step2Error = ref('')
+
+function validateStep1(): boolean {
+  const name = loanStore.farmerForm.farmerName.trim()
+  const phone = loanStore.farmerForm.farmerPhone.trim()
+  if (!name) {
+    step1Error.value = '请输入姓名'
+    return false
+  }
+  if (!/^[\u4e00-\u9fa5a-zA-Z]{2,20}$/.test(name)) {
+    step1Error.value = '姓名只能包含中文或英文字母，长度2-20位'
+    return false
+  }
+  if (!phone) {
+    step1Error.value = '请输入手机号码'
+    return false
+  }
+  if (!/^1\d{10}$/.test(phone)) {
+    step1Error.value = '手机号格式不正确，需以1开头的11位数字'
+    return false
+  }
+  step1Error.value = ''
+  return true
+}
+
+function validateStep2(): boolean {
+  const area = loanStore.farmerForm.plantArea
+  if (!area || area <= 0) {
+    step2Error.value = '种植面积必须大于0'
+    return false
+  }
+  if (area > 9999) {
+    step2Error.value = '种植面积数值过大，请检查'
+    return false
+  }
+  step2Error.value = ''
+  return true
+}
+
+function goStep2() {
+  if (validateStep1()) step.value = 2
+}
+
+function goSubmit() {
+  if (validateStep2()) handleSubmit()
+}
 
 const features = [
   { icon: '⚡', title: '3分钟完成申请', desc: '全程线上，无需跑网点' },
@@ -261,6 +311,23 @@ function delay(ms: number) { return new Promise(resolve => setTimeout(resolve, m
     overflow-y: visible;
   }
 }
+
+.mobile-back-home {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-back-home {
+    display: block;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+}
+
 .mobile-screen { padding: 20px; }
 .welcome-emoji { font-size: 52px; text-align: center; padding-top: 16px; }
 .welcome-title { font-size: 20px; font-weight: 700; text-align: center; color: var(--text-primary); margin: 8px 0 4px; }
@@ -304,4 +371,15 @@ function delay(ms: number) { return new Promise(resolve => setTimeout(resolve, m
 .rtl-done { color: var(--primary); font-weight: 600; }
 .rtl-pending { color: var(--accent); font-weight: 600; }
 .rtl-arrow { color: var(--border); }
+
+.form-error {
+  color: #991b1b;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  background: #fee2e2;
+  border-radius: 6px;
+  border-left: 3px solid #c0392b;
+}
 </style>
